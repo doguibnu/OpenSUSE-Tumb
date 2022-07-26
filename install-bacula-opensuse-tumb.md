@@ -8,7 +8,6 @@ ecolha um nome para seu server por exemplo: **baculasrv**
 
 salve o arquivo com o comando:
 **control + o**
-
 e para sair do editor, com o comando:
 **contorl + x**
 
