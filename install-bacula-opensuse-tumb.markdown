@@ -1,135 +1,185 @@
-**Instalar Bacula no Opensuse Tumbleweed**
+# **Instalar Bacula no Opensuse Tumbleweed** #
 
 Após a instalação do sistema é necessário inserir o nome de hostname no
 arquivo **/etc/hostname**. Para isso, utilize o editor nano com o
-comando: **nano /etc/hostname** ecolha um nome para seu server por
-exemplo: **baculasrv**
+comando: 
+````
+nano /etc/hostname
+ecolha um nome para seu server por exemplo: baculasrv
+````
+salve o arquivo com o comando:
+ ```
+ control + o
+ ```` 
 
-salve o arquivo com o comando: **control + o**
-
-e para sair do editor, com o comando: **contorl + x**
+e para sair do editor, com o comando:
+````
+contorl + x
+````
 
 Alterar o hostname sem necessidade de executar reboot no servidor. Use o
-comando: **echo “nome_escolhido” \> /proc/sys/kernel/hostname**
+comando: 
+````
+echo “nome_escolhido” \> /proc/sys/kernel/hostname
+````
 
-Saia do sistema com o comando: **logout** Logue-se novamente e o nome
+Saia do sistema com o comando:
+```
+logout
+```
+Logue-se novamente e o nome
 estará alterado.
 
-Atualizar o sistem com o comando: **zypper up**
+Atualizar o sistem com o comando: 
+```
+zypper up
+```
 
-Instalação dos pacotes necessários para compilar, instalalar e rodar o
-Bacula. **zypper in zypper in -y make lzo-devel gcc gcc-c++
-mingw64-zlib1 libssl52 mt-st mtx libacl-devel postgresql10-devel
-postgresql10-server**
 
-Abrir portas do Firewall para comunicação do Bacula **firewall-cmd
-–permanent –zone=public –add-port=9101-9103/tcp  
-firewall-cmd –reload**
+## Instalação dos pacotes necessários para compilar, instalar e rodar o Bacula.
 
-**Instalação dos pacotes necessários para compilar, instalar e rodar o
-Bacula.**
+````
+zypper in -y make lzo-devel gcc gcc-c++ mingw64-zlib1 libssl52 mt-st mtx libacl-devel postgresql10-devel postgresql10-server
+````
+Abrir portas do Firewall para comunicação do Bacula e executar um Reload no Firewall
+````
+firewall-cmd --permanent --zone=public --add-port=9101-9103/tcp  
+firewall-cmd --reload
+````
 
-**Para Servidor:**  
-Instalar os pacotes necessários para compilar o **Bacula** e instalar o
-**Postgresql**: \*\*zypper in -y make lzo-devel gcc gcc-c++
-mingw64-zlib1 libssl52 mt-st mtx libacl-devel postgresql10-devel
-postgresql10-server
+**Iniciar** o Postgresql: 
+````
+systemctl start postgresql
+````
 
-Abrir portas do Firewall para comunicação do Bacula e reiniciar o
-firewall: **firewall-cmd –permanent –zone=public
-–add-port=9101-9103/tcp  
-firewall-cmd –reload**
+Verificar o **Status** do serviço **Postgresql:**:
+````
+systemctl status postgresql
+````
 
-Iniciar\*\* o Postgresql no **Servidor**: **systemctl start postgresql**
+**Habilitar** o serviço para iniciar no boot do sistema:
+````
+systemctl enable postgresql
+````
 
-Verificar o **status** do serviço **Postgresql:**: **systemctl status
-postgresql**
+## **Fazer Download do Bacula (versão 11.06)**
 
-**Habilitar** o serviço para iniciar no boot do sistema: **systemctl
-enable postgresql**
+Fazer um diretório para o bacula: 
+````
+mkdir baculatemp
+````
 
-**Fazer Download do Bacula (versão 11.06)**
-
-Fazer um diretório para o bacula: **mkdir baculatemp**
-
-Mudar para o diretório criado: **cd baculatemp**
+Mudar para o diretório criado:
+````
+cd baculatemp
+````
 
 Fazer o download do arquivo de instalação do bacula com o comando:
-**wget -O bacula-11.0.6.tar.gz
-https://sourceforge.net/projects/bacula/files/bacula/11.0.6/bacula-11.0.6.tar.gz/download**
-
-Descompactar o arquivo baixado com o comando: **tar -zxvf
-nome_arquivo_tar.gz**
-
+````
+wget -O bacula-11.0.6.tar.gz https://sourceforge.net/projects/bacula/files/bacula/11.0.6/bacula-11.0.6.tar.gz/download
+````
+Descompactar o arquivo baixado com o comando:
+````
+tar -zxvf nome_arquivo_tar.gz
+````
 Mude para o diretório onde foi descompactado o mesmo e então, fazer o
 comando para compilar o bacula: Atenção para os parâmetros:
-–with-job-email=**seu-e-mail-desejado**
-–with-hostname=**hostname-ou-IP-desejado**
+--with-job-email=**seu-e-mail-desejado** --with-hostname=**hostname-ou-IP-desejado**
 
-**./configure –with-readline=/usr/include/readline –disable-conio
-–bindir=/usr/bin –sysconfdir=/opt/bacula/etc –sbindir=/usr/sbin
-–with-scriptdir=/opt/bacula/scripts
-–with-working-dir=/opt/bacula/working –with-logdir=/var/log
-–enable-smartalloc –with-postgresql –with-archivedir=/mnt/backup
-–with-job-email=e-mail_desejado –with-hostname=IP_desejado**
+``````
+./configure --with-readline=/usr/include/readline --disable-conio --bindir=/usr/bin --sysconfdir=/opt/bacula/etc --sbindir=/usr/sbin --with-scriptdir=/opt/bacula/scripts --with-working-dir=/opt/bacula/working --with-logdir=/var/log–enable-smartalloc --with-postgresql --with-archivedir=/mnt/backup --with-job-email=e-mail_desejado --with-hostname=IP_desejado
+````````
 
-Após a finalização siga com os comandos: **make -j 8**
+Após a finalização siga com os comandos:
+````
+make -j 8
+````
 
-E então: **make install**
-
-Criar um usuário **bacula** com a senha **bacula** no postgres. No
-terminal mudar para o usuário postgres:  
-**su - postgres**
-
+E então:
+````
+make install
+````
+Criar um usuário **bacula** com a senha **bacula** no postgres. No terminal mudar para o usuário postgres:
+````
+su - postgres
+````
 Executar o comando:  
-**psql**
+````
+psql
+````
 
-Criar o usuário bacula com o password bacula com o comando: **CREATE
-USER bacula WITH PASSWORD ‘bacula’;**
-
-Para sair: **\*  
-**exit\*\*
+Criar o usuário bacula com o password bacula com o comando:
+````
+CREATE USER bacula WITH PASSWORD ‘bacula’;
+````
+Para sair:
+````
+\
+exit
+````
 
 No Terminal mudar as permissões do diretório executando o comando:
-**chmod 775 /opt/bacula/**
+````
+chmod 775 /opt/bacula/
+````
 
 Mudar para o diretório **/opt/bacula/scripts**  
-**cd /opt/bacula/scripts**
+````
+cd /opt/bacula/scripts
+````
 
 Mudar o proprietário para postgres dos seguintes arquivos com o
-comando:  
-**chown postgres create_postgresql_database && chown postgres
-make_postgresql_tables**  
-**chown postgres grant_postgresql_privileges && chown postgres
-drop_postgresql_database**  
-**chown postgres update_postgresql_tables**
+comando:
+``````
+chown postgres create_postgresql_database && chown postgres make_postgresql_tables  
+chown postgres grant_postgresql_privileges && chown postgres drop_postgresql_database  
+chown postgres update_postgresql_tables
+``````
 
 Trocar o usuário para postgres:  
-**su postgres**
+````
+su postgres
+````
 
 **Criar** a base de dados do postgresql,  
 **Fazer** as tabelas,  
 **Garantir** privilégios   
 **Sair** com os comandos
 
-Então: **./create_postgresql_database ./make_postgresql_tables
+Então: 
+````
+./create_postgresql_database 
+./make_postgresql_tables
 ./grant_postgresql_privileges  
-exit**
-
+exit
+``````
 Editar o arquivo **/var/lib/pgsql/data/postgresql.conf**:  
-**nano /var/lib/pgsql/data/postgresql.conf **
+````
+nano /var/lib/pgsql/data/postgresql.conf 
+````
+Antes: 
+**# listen_addresses = **‘localhost’**  
 
-Antes: \# listen_addresses = **‘localhost’**  
 Para:  
-\*\*listen_addresses = ’\*’\*\*
+````
+listen_addresses = '*'
+````
 
-**Depois: ** \#port = 5432  
-Para:  
-**port = 5432** Salvar e sair do arquivo
+**De:
+#port = 5432**
+
+
+Para:
+````
+port = 5432
+````
+Sair do arquivo
+
 
 Editar o arquivo **/var/lib/pgsql/data/pg_hba.conf:**
-**nano **/var/lib/pgsql/data/pg_hba.conf:\*\*
-
+````
+nano **/var/lib/pgsql/data/pg_hba.conf
+``````
 **Antes:**  
 \# “local” is for Unix domain socket connections only  
 local   all             all                                     peer  
@@ -140,12 +190,14 @@ host    all             all             ::1/128           
 \# Allow replication connections from localhost, by a user with the  
 \# replication privilege.
 
+_______
+
 **Para**: \# “local” is for Unix domain socket connections only  
-**local   all             all                                     md5 **
+**local   all             all                             md5 **
 \# IPv4 local connections:  
-host    all             all             127.0.0.1/32 trust  
+host    all             all             127.0.0.1/32     trust  
 \# IPv6 local connections:  
-host    all             all             ::1/128 trust\*\*  
+host    all             all             ::1/128          trust  
 \# Allow replication connections from localhost, by a user with the  
 \# replication privilege.  
 **Salvar o arquivo**
