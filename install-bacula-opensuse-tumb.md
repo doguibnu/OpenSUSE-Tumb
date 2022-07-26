@@ -1,7 +1,8 @@
 **Instalar Bacula no Opensuse Tumbleweed**
 
 
-Após a instalação do sistema é necessário inserir o nome de hostname no arquivo **/etc/hostname**. Para isso, utilize o editor nano com o comando:
+Após a instalação do sistema é necessário inserir o nome de hostname no arquivo **/etc/hostname**.
+Para isso, utilize o editor nano com o comando:
 **nano /etc/hostname**
 ecolha um nome para seu server por exemplo: **baculasrv**
 
