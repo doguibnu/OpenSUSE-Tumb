@@ -1,7 +1,7 @@
 **Instalar Bacula no Opensuse Tumbleweed**
 
-Após a instalação do sistema é necessário inserir o nome de hostname no arquivo **/etc/hostname**. Para isso, utilize o editor nano com o comando:
 
+Após a instalação do sistema é necessário inserir o nome de hostname no arquivo **/etc/hostname**. Para isso, utilize o editor nano com o comando:
 **nano /etc/hostname**
 ecolha um nome para seu server por exemplo: **baculasrv**
 
@@ -36,18 +36,11 @@ firewall-cmd --reload**
 
 **Para Servidor:**  
 Instalar os pacotes necessários para compilar o **Bacula** e instalar o **Postgresql**:
+**zypper in -y make lzo-devel gcc gcc-c++ mingw64-zlib1 libssl52 mt-st mtx libacl-devel postgresql10-devel postgresql10-server
 
-> **zypper in -y make lzo-devel gcc gcc-c++ mingw64-zlib1 libssl45 mt-st mtx libacl-devel postgresql96-devel postgresql96-server postgresql96**
-
-**Para Cliente Linux:**
-
-> **zypper in -y gcc-c++ zlib-devel lzo-devel libacl-devel openssl-devel**
-
-Abrir portas do Firewall para comunicação do Bacula.  
-**Para o **Servidor:****
-
-> **firewall-cmd --permanent --zone=public --add-port=9101-9103/tcp  
-> firewall-cmd --reload**
+Abrir portas do Firewall para comunicação do Bacula e reiniciar o firewall: 
+**firewall-cmd --permanent --zone=public --add-port=9101-9103/tcp  
+firewall-cmd --reload**
 
 Iniciar** o Postgresql no **Servidor**:
 **systemctl start postgresql**
@@ -208,6 +201,7 @@ WantedBy=multi-user.target**
 **Salvar o arquivo**
 
 
+
 Recarregar o **daemon** do **systemd**:
 **systemctl daemon-reload**  
 
@@ -230,7 +224,6 @@ Verificar o **Status** do serviço bacula**:**
  
 **Testando o Bacula**  
 Lembrando que os serviços do **Postgresql** e **Bacula** devem estar ativos. Verificar com os comandos:  
-
 **systemctl status bacula.service  
 systemctl status postgresq**
 
