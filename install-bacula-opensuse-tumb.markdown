@@ -165,11 +165,10 @@ Para:
 listen_addresses = '*'
 ````
 
-**De:
+**De:**
 #port = 5432**
 
-
-Para:
+**Para:**
 ````
 port = 5432
 ````
@@ -189,81 +188,111 @@ host    all             all             127.0.0.1/32       
 host    all             all             ::1/128                 ident  
 \# Allow replication connections from localhost, by a user with the  
 \# replication privilege.
-
 _______
 
-**Para**: \# “local” is for Unix domain socket connections only  
-**local   all             all                             md5 **
-\# IPv4 local connections:  
-host    all             all             127.0.0.1/32     trust  
-\# IPv6 local connections:  
-host    all             all             ::1/128          trust  
-\# Allow replication connections from localhost, by a user with the  
-\# replication privilege.  
+**PARA:**
+````
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+# IPv6 local connections:
+host    all             all             ::1/128                 trust
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+``````
 **Salvar o arquivo**
+
 
 Editar o arquivo **bacula-dir.conf** e inserir as credenciais para se
 conectar a porta **5432**:  
-**nano /opt/bacula/etc/bacula-dir.conf**
+````
+nano /opt/bacula/etc/bacula-dir.conf
+Procurar pela linha Catalog e insira as linhas como abaixo:
 
-**Catalog {  
+Catalog {  
 Name = MyCatalog**  
-\*\*dbdriver = “postgresql”; dbaddress = 127.0.0.1; dbport = 5432  
- dbname = “bacula”; dbuser = “bacula”; dbpassword = “bacula” }
-
+dbdriver = “postgresql”; dbaddress = 127.0.0.1; dbport = 5432  
+dbname = “bacula”; dbuser = “bacula”; dbpassword = “bacula” }
+`````
 **Salvar o arquivo**
 
-Abrir a porta **5432** no Firewall e recarregar o firewall:
-**firewall-cmd –permanent –zone=public –add-port=5432/tcp  
-firewall-cmd –reload**\*\*
 
-**Fazer um arquivo Unit do serviço Bacula **
+Abrir a porta **5432** no Firewall e recarregar o firewall:
+````
+firewall-cmd --permanent --zone=public --add-port=5432/tcp  
+firewall-cmd --reload
+````
+
+**Fazer um arquivo Unit do serviço Bacula**
 
 Mudar para o diretório:  
-**cd /etc/systemd/system**
+````
+cd /etc/systemd/system
+````
+Criar o arquivo:
+````
+nano bacula.service
+````
 
-Criar o arquivo: **nano bacula.service **
-
-Copie e cole com o seguinte conteúdo:
-
-\*\*\[Unit\]  
+**Copie e cole com o seguinte conteúdo para seu arquivo:**
+_____
+`````
+[Unit]  
 Description=Bacula backup service  
 After=syslog.target network.target
 
-\*\*\[Service\]  
+[Service]  
 Type=forking  
 ExecStart=/opt/bacula/scripts/bacula start  
 ExecReload=/opt/bacula/scripts/bacula reload  
 ExecStop=/opt/bacula/scripts/bacula stop
 
-**\[Install\]  
-WantedBy=multi-user.target**
-
+[Install]  
+WantedBy=multi-user.target
+``````
 **Salvar o arquivo**
+______
 
-Recarregar o **daemon** do **systemd**: **systemctl daemon-reload**
+Recarregar o **daemon** do **systemd**: 
+````
+systemctl daemon-reload
+````
+**Iniciar** o Serviço bacula:
+````
+systemctl start bacula.service
+````
+Verificar o **Status** do serviço bacula:
+````
+systemctl status bacula.service
+````
+**Parar** o serviço do bacula: 
+````
+systemctl stop bacula.service
+````
 
-**Iniciar** o Serviço bacula: **systemctl start bacula.service **
-
-Verificar o **Status** do serviço bacula**:** **systemctl status
-bacula.service**
-
-**Parar** o serviço do bacula: **systemctl stop bacula.service **
-
-**Habilitar** o serviço bacula para iniciar com o sistema: **systemctl
-enable bacula.service**
-
-**Reiniciar** o servidor: **reboot**
+**Habilitar** o serviço bacula para iniciar com o sistema:
+````
+systemctl enable bacula.service
+````
+**Reiniciar** o servidor:
+````
+reboot
+````
 
 **Testando o Bacula**  
 Lembrando que os serviços do **Postgresql** e **Bacula** devem estar
-ativos. Verificar com os comandos:  
-**systemctl status bacula.service  
-systemctl status postgresq**
+ativos. Verificar com os comandos:
+````
+systemctl status bacula.service  
+systemctl status postgresq
+````
+Agora, no terminal chame o **bconsole**:
+````
+bconsole  
+Connecting to Director 10.1.1.52:9101  
+1000 OK: 103 baculasrv-dir Version: 9.6.6 (20 September 2020)  
+Enter a period to cancel a command
+````
 
-Agora, no terminal chame o **bconsole**: **bconsole**  
-**Connecting to Director 10.1.1.52:9101**  
-**1000 OK: 103 baculasrv-dir Version: 9.6.6 (20 September 2020)**  
-**Enter a period to cancel a command.**
-
-**Se aparecer o **\* indica que o **bacula está funcional.**
+Se aparecer o ***** indica que o **bacula está funcional.**
