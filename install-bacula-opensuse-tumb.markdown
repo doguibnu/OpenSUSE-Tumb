@@ -114,7 +114,7 @@ CREATE USER bacula WITH PASSWORD 'bacula';
 ````
 Para sair:
 ````
-\
+\q
 exit
 ````
 
