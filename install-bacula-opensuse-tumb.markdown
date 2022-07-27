@@ -211,9 +211,9 @@ nano /opt/bacula/etc/bacula-dir.conf
 Procurar pela linha Catalog e insira as linhas como abaixo:
 
 Catalog {  
-Name = MyCatalog**  
-dbdriver = “postgresql”; dbaddress = 127.0.0.1; dbport = 5432  
-dbname = “bacula”; dbuser = “bacula”; dbpassword = “bacula”
+Name = MyCatalog  
+dbdriver = "postgresql"; dbaddress = 127.0.0.1; dbport = 5432  
+dbname = "bacula"; dbuser = "bacula"; dbpassword = "bacula"
 }
 `````
 **Salvar o arquivo**
