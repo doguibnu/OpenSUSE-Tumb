@@ -293,6 +293,7 @@ bconsole
 Connecting to Director 10.1.1.52:9101  
 1000 OK: 103 baculasrv-dir Version: 9.6.6 (20 September 2020)  
 Enter a period to cancel a command
+*
 ````
 
-Se aparecer o ***** indica que o **bacula está funcional.**
+Se aparecer o * indica que o **bacula está funcional.**
