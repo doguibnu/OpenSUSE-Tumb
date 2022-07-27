@@ -177,7 +177,7 @@ Sair do arquivo
 
 Editar o arquivo **/var/lib/pgsql/data/pg_hba.conf:**
 ````
-nano **/var/lib/pgsql/data/pg_hba.conf
+nano /var/lib/pgsql/data/pg_hba.conf
 ``````
 **Antes:**  
 \# “local” is for Unix domain socket connections only  
