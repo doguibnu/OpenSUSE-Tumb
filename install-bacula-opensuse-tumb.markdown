@@ -110,7 +110,7 @@ psql
 
 Criar o usuário bacula com o password bacula com o comando:
 ````
-CREATE USER bacula WITH PASSWORD ‘bacula’;
+CREATE USER bacula WITH PASSWORD 'bacula';
 ````
 Para sair:
 ````
