@@ -69,7 +69,7 @@ Fazer um diretório para o bacula:
 mkdir baculatemp
 ````
 
-*Mudar para o diretório criado:
+Mudar para o diretório criado:
 ````
 cd baculatemp
 ````
