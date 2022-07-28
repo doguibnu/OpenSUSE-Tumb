@@ -99,6 +99,85 @@ E então:
 ````
 make install
 ````
+
+Deve gerar uma saída das opções de configuração da instalação
+
+``````
+Configuration on Wed Jul 27 14:22:40 -03 2022:
+
+   Host:                      x86_64-pc-linux-gnu -- unknown unknown
+   Bacula version:            Bacula 11.0.6 (10 March 2022)
+   Source code location:      .
+   Install binaries:          /usr/sbin
+   Install libraries:         /usr/lib64
+   Install config files:      /opt/bacula/etc
+   Scripts directory:         /opt/bacula/scripts
+   Archive directory:         /mnt/backup
+   Working directory:         /opt/bacula/working
+   PID directory:             /var/run
+   Subsys directory:          /var/run/subsys
+   Man directory:             /usr/share/man
+   Data directory:            /usr/share
+   Plugin directory:          /usr/lib64
+   C Compiler:                gcc Linux)
+   C++ Compiler:              /usr/bin/g++ Linux)
+   Compiler flags:             -g -O2 -Wall -x c++ -fno-strict-aliasing -fno-exceptions -fno-rtti
+   Linker flags:               
+   Libraries:                 -lpthread 
+   Statically Linked Tools:   no
+   Statically Linked FD:      no
+   Statically Linked SD:      no
+   Statically Linked DIR:     no
+   Statically Linked CONS:    no
+   Database backends:         PostgreSQL
+   Database port:              
+   Database name:             bacula
+   Database user:             bacula
+   Database SSL options:      
+
+   Job Output Email:          e-mail@dominio.com
+   Traceback Email:           root@localhost
+   SMTP Host Address:         localhost
+
+   Director Port:             9101
+   File daemon Port:          9102
+   Storage daemon Port:       9103
+
+   Director User:             
+   Director Group:            
+   Storage Daemon User:       
+   Storage DaemonGroup:       
+   File Daemon User:          
+   File Daemon Group:         
+
+   Large file support:        yes
+   Bacula conio support:      no -lreadline -lhistory -ltinfo
+   readline support:          yes 
+   TCP Wrappers support:      no 
+   TLS support:               yes
+   Encryption support:        yes
+   ZLIB support:              yes
+   LZO support:               yes
+   S3 support:                no
+   enable-smartalloc:         yes
+   enable-lockmgr:            no
+   bat support:               no
+   client-only:               no
+   build-dird:                yes
+   build-stored:              yes
+   Plugin support:            yes
+   AFS support:               no
+   ACL support:               yes
+   XATTR support:             yes
+   GPFS support:              no 
+   systemd support:           no 
+   Batch insert enabled:      PostgreSQL
+
+   Plugins:
+   - Docker:                  no
+```````
+
+
 Criar um usuário **bacula** com a senha **bacula** no postgres. No terminal mudar para o usuário postgres:
 ````
 su - postgres
@@ -290,10 +369,10 @@ systemctl status postgresq
 ````
 Agora, no terminal chame o **bconsole**:
 ````
-bconsole  
-Connecting to Director 10.1.1.52:9101  
-1000 OK: 103 baculasrv-dir Version: 9.6.6 (20 September 2020)  
-Enter a period to cancel a command
+bconsole
+Connecting to Director 10.1.1.23:9101
+1000 OK: 10002 srvbacula-dir Version: 11.0.6 (10 March 2022)
+Enter a period to cancel a command.
 *
 ````
 
