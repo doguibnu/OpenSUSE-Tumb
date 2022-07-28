@@ -377,3 +377,12 @@ Enter a period to cancel a command.
 ````
 
 Se aparecer o * indica que o **bacula está funcional.**
+
+
+
+**Fontes:**
+
+[Comandos de Compilação e Instalação Bacula](https://www.bacula.lat/community/comandos-de-compilacao/)
+
+[Wanderlei Huttel](https://github.com/wanderleihuttel/bacula-utils/tree/master/tutorial)
+ 
