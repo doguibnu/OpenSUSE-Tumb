@@ -1,4 +1,4 @@
-## Como instalar o Bacula (11.06) no OpenSUSE Tubmbleweed com Postgresql ##
+## Como instalar o Bacula e o Baculum (11.06) no OpenSUSE Tubmbleweed com Postgresql ##
 
 Segundo ao [site](https://www.bacula.lat/o-que-e-o-bacula/) do Bacula:
 
