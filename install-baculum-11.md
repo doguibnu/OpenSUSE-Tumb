@@ -1,4 +1,6 @@
-## Criar um diretório temporário para o Baculum:
+## Como instalar o Baculum no OpenSUSE Thumbleweed:
+
+Criar um diretório temporário para o Baculum:
 
     mkdir baculumtemp
 
@@ -25,7 +27,7 @@ Então, seguindo o exemplo acima:
 
     make build DESTDIR=/baculumtemp/bacula-gui-11.0.6/baculum WWWDIR=/srv/www/htdocs/baculum 
 
-Dentro do diretório /baculumtemp/bacula-gui-11.0.6/baculum listando seu conteúdo, irá perceber que terá um novo diretório: srv, então:
+Dentro do diretório **/baculumtemp/bacula-gui-11.0.6/baculum** listando seu conteúdo, irá perceber que terá um novo diretório: srv, então:
 Copiar os arquivos do tipo web para o diretório web do OpenSUSE:
 
     cp -R srv/www/htdocs/baculum/ /srv/www/htdocs/
@@ -33,8 +35,9 @@ Copiar os arquivos do tipo web para o diretório web do OpenSUSE:
 Copiar os arquivos de configuração web do Apache para /etc/apache2/conf.d/:
 
     cp /baculumtemp/bacula-gui-11.0.6/baculum/etc/httpd/conf.d/baculum-*conf /etc/apache2/conf.d/
-
-    Copiar os arquivos básicos de autenticação:
+    
+    
+Copiar os arquivos básicos de autenticação:
 
 API:
 
@@ -42,9 +45,9 @@ API:
 
 Web:
 
-    cp /baculumtemp/bacula-gui-11.0.6/baculum/etc/baculum/Config-web-apache/baculum.users /srv/www/htdocs/baculum/protected/Web/Config
-
-    Copiar os arquivos de localização
+    cp /baculumtemp/bacula-gui-11.0.6/baculum/etc/baculum/Config-web-apache/baculum.users /srv/www/htdocs/baculum/protected/Web/Config    
+    
+Copiar os arquivos de localização
 
 English API:
 
