@@ -27,7 +27,7 @@ Então, seguindo o exemplo acima:
 
     make build DESTDIR=/baculumtemp/bacula-gui-11.0.6/baculum WWWDIR=/srv/www/htdocs/baculum 
 
-Dentro do diretório **/baculumtemp/bacula-gui-11.0.6/baculum** listando seu conteúdo, irá perceber que terá um novo diretório: srv, então:
+Dentro do diretório **/baculumtemp/bacula-gui-11.0.6/baculum** listando seu conteúdo, irá perceber que terá um novo **subdiretório: srv**, então:
 Copiar os arquivos do tipo web para o diretório web do OpenSUSE:
 
     cp -R srv/www/htdocs/baculum/ /srv/www/htdocs/
