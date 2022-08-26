@@ -168,3 +168,8 @@ Abrir um navegador:
     
     user: admin
     senha: admin
+ 
+ 
+ Fonte da instalação manual, acesse: [Baculum](https://baculum.app/doc/brief/installation.html#manual-installation)
+
+Obrigado!
