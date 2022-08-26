@@ -12,3 +12,9 @@ Bacula é um software que permite você (ou o administrador de sistema) administ
 - GPL – sem custos com licenças, conhecimento e possibilidade de customização da ferramenta na versão community.
 
 Para mais informações sobre o bacula clique [Aqui](https://www.bacula.lat/)
+
+
+## Baculum ##
+
+Baculum (bacula-gui) é a interface gráfica web oficial do projeto Bacula.
+Para maiores informações acessar o [site](https://baculum.app/doc/brief/installation.html)
