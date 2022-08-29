@@ -1,4 +1,4 @@
-## Como instalar o Baculum no OpenSUSE Thumbleweed:
+## Como instalar o Baculum no OpenSUSE Tumbleweed:
 
 Criar um diretório temporário para o Baculum:
 
