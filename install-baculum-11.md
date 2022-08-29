@@ -77,9 +77,31 @@ Ja Web:
 
     cp --remove-destination /baculumtemp/bacula-gui-11.0.6/baculum/usr/share/locale/ja/LC_MESSAGES/baculum-web.mo /srv/www/htdocs/baculum/protected/Web/Lang/ja/messages.mo
 
-Setar o proprietário e grupo dos arquivos copiados:
 
-    chown -R wwwrun:wwwrun /srv/www/htdocs/baculum/
+Setar o proprietário e grupo dos arquivos copiados:
+```
+chown -R wwwrun:wwwrun /srv/www/htdocs/baculum/
+```
+
+Mudar para o diretório /baculumtemp/bacula-gui-11.0.6/baculum/etc com o comando:
+```
+cd /baculumtemp/bacula-gui-11.0.6/baculum/etc
+```
+
+Copiar Recursivamente o subdiretório baculun para **/etc**:
+```
+cp -r baculum /etc/
+```
+
+Mudar a permissão do grupo recursivamente para leitura, escrita e execução:
+```
+chmod -R g+rwx /etc/baculum/
+```
+
+Mudar o propritário do subdiretório **/etc/baculum/**:
+```
+chown -R wwwrun:bacula /etc/baculum/
+```
 
 Criar um grupo bacula:
 
