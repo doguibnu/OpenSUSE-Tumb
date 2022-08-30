@@ -76,7 +76,7 @@ cd baculatemp
 
 Fazer o download do arquivo de instalação do bacula com o comando:
 ````
-wget -O bacula-11.0.6.tar.gz https://sourceforge.net/projects/bacula/files/bacula/11.0.6/bacula-11.0.6.tar.gz/download
+wget -O bacula-11.0.6.tar.gz https://sourceforge.net/projects/bacula/files/bacula/11.0.6/bacula-11.0.6.tar.gz
 ````
 Descompactar o arquivo baixado com o comando:
 ````
